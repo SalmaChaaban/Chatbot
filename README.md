@@ -1,1 +1,1 @@
-"# Chatbot" 
+# This repository contains a chatbot designed to assist hotel customers by answering their questions based on information extracted from the official hotel website. The chatbot leverages OpenAI's GPT model for natural language processing to provide accurate and relevant responses, enhancing the customer service experience.
