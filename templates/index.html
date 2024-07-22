@@ -9,19 +9,29 @@
     <body>
         <h1>Landon Hotel Chatbot</h1>
         <div id="chat-container"></div>
-        <input type="text" id="user-input" placeholder="Type your message..."/>
-        <button id="send-btn">Send</button>
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Type your message..."/>
+            <button id="send-btn">Send</button>
+        </div>
         <script>
             const chatContainer = document.getElementById('chat-container');
             const userInput = document.getElementById('user-input');
             const sendBtn = document.getElementById('send-btn');
         
             sendBtn.addEventListener('click', sendMessage);
+
+            // Sends message with Enter key
+            userInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevents the default behavior of the Enter key (e.g., form submission)
+                    sendMessage();
+                }
+            });            
             
             function sendMessage() {
                 const userMessage = userInput.value.trim();
                 if (userMessage) {
-                    displayMessage('user', userMessage);
+                    displayMessage('You', userMessage);
                     sendMessageToServer(userMessage);
                     userInput.value = '';
                 }
@@ -46,7 +56,7 @@
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                    displayMessage('bot', data.response);
+                    displayMessage('Bot', data.response);
                 })
                 .catch((error) => {
                     console.error('Error:', error);
